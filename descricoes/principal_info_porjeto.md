@@ -56,15 +56,6 @@ O dashboard permite diferentes formas de interação para facilitar a exploraç�
 
 ---
 
-## **4. Atualizações e Melhorias**
-Este dashboard está em constante aprimoramento para incluir novos períodos de análise e ampliar as funcionalidades disponíveis. Ajustes e refinamentos poderão ser realizados conforme novos dados forem incorporados.
-
-Caso tenha dúvidas ou sugestões, entre em contato com a equipe responsável pela execução do PRODITEC.
-
-**Explore os dados e acompanhe a evolução do programa.**
-
----
-
 ## **Estatísticas Gerais**
 
 ## **Apresentação das Análises**
