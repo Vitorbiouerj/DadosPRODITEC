@@ -37,6 +37,7 @@ O dashboard permite diferentes formas de interação para facilitar a exploraç�
   - Passe o mouse sobre os gráficos e mapas para visualizar informações complementares.
   - Na maioria dos gráficos, pode-se dar zoom em trechos específicos selecionando a área desejada.
   - Os itens podem ser ocultos ou exibidos dos gráficos clicando na legenda correspondente.
+    - *Com um clique duplo será exibido os dados apenas do item selecionado, ou irá reverter para que todos sejam exibidos.*
 - **Filtragem de dados em tempo real:**  
   Utilize os menus suspensos (dropdowns) ou abas para selecionar estados, regiões ou outros critérios de interesse.
 - **Exportação de dados:**  
