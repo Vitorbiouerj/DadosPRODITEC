@@ -2,7 +2,7 @@
 
 ## Sobre o Desenvolvedor
 
-O projeto de análise de dados educacionais do **PRODITEC - Programa de Formação Continuada para Diretores Escolares e Técnicos das Secretarias de Educação** está sendo desenvolvido por **Vitor Lima Menezes**, **servidor da Universidade Federal Fluminense (UFF) e bolsista do projeto**, em parceria com o **Ministério da Educação (MEC)** e a **Universidade Federal de São Carlos (UFSCar)**.  
+O projeto de análise de dados educacionais do **PRODITEC - Programa de Formação Continuada para Diretores Escolares e Técnicos das Secretarias de Educação** está sendo desenvolvido por **Vitor Lima Menezes**, **servidor da Universidade Federal Fluminense (UFF) e bolsista do projeto**, em parceria com o **Ministério da Educação (MEC)** e a **Universidade Federal de São Carlos (UFSCar)**, e com a coordenação de: **Viviane Merlim Moraes** (Coodenadora Geral do projeto - UFF). 
 
 O projeto está **em constante desenvolvimento**, com atualizações contínuas para aprimorar a análise e visualização dos dados educacionais de 2024 e 2025. O objetivo é fornecer insights estratégicos que auxiliem na gestão da educação, garantindo informações precisas e acessíveis.
 
