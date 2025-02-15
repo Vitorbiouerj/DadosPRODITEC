@@ -1,0 +1,3 @@
+Esta página apresenta estatísticas do Censo Escolar de 2023, permitindo a análise da distribuição de matrículas por estado e região. Os gráficos comparam o número total de matrículas por **Unidade Federativa (UF)**, destacando diferenças entre os estados, e analisam a variação das matrículas por **região**, facilitando a identificação de padrões educacionais no país. 
+
+Além disso, são apresentadas medidas estatísticas como média, mediana, quartis e os limites superiores e inferiores, proporcionando uma visão mais detalhada da distribuição das matrículas e permitindo comparações entre diferentes localidades.

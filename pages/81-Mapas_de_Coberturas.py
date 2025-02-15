@@ -1,17 +1,23 @@
 import streamlit as st
 import streamlit.components.v1 as components
+import os
+import sys
 
-# --- Interface Streamlit ---
-st.title("📊 Mapas Coropléticos do PRODITEC")
+# Obtém o caminho absoluto do diretório raiz do projeto
+dir_raiz = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 
-# 🔹 Adicionando um parágrafo explicativo
-st.markdown(
-    """
-    Os mapas abaixo representam o **percentual de escolas atendidas** pelo PRODITEC, considerando o número total de escolas em cada localidade e o número de participantes inscritos no programa.  
-    A intensidade da cor no mapa indica a proporção de escolas atendidas: regiões mais escuras representam maior cobertura do PRODITEC, enquanto as mais claras indicam menor participação relativa.
-    """
-)
+# Adiciona o diretório raiz ao sys.path para que possamos importar config_pagina.py
+if dir_raiz not in sys.path:
+    sys.path.append(dir_raiz)
 
+# Agora importa corretamente a função configurar_pagina
+from config_pagina import configurar_pagina
+
+# Obtém o nome do arquivo atual dinamicamente
+nome_arquivo = os.path.basename(__file__)
+
+# Configura a página automaticamente
+configurar_pagina(nome_arquivo)
 
 # Função para exibir um arquivo HTML corretamente
 def exibir_html(arquivo_html, titulo):

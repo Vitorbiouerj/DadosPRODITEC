@@ -1,7 +1,14 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+import os
+from config_pagina import configurar_pagina  # Importa a configuração da página
 
+# Obtém o nome do arquivo atual dinamicamente
+nome_arquivo = os.path.basename(__file__)
+
+# Configura a página automaticamente
+configurar_pagina(nome_arquivo)
 
 # Carregar os dados (substituir pelo caminho real do arquivo)
 @st.cache_data

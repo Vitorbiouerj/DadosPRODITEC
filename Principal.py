@@ -4,14 +4,17 @@ import plotly.express as px
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import os
+from carregador_texto import carregar_texto
+
+# st.markdown(carregar_texto("introducao.md"))  - Exibe um texto antes do conteúdo
+
+#    st.subheader("Distribuição de Matrículas por Região")
+#    st.markdown(carregar_texto("descricao_grafico.md"))  - Exibe um texto abaixo do subheader"""
 
 # Configuração da página (este será o script principal)
 st.set_page_config(page_title="Dados Gerais do Curso - UFF", layout="wide")
 st.title("Dados Gerais do Curso PRODITEC, UFF, em parceria com o MEC e UFSCar - Análise Detalhada (Principal)")
-st.markdown("""
-   - Esse é um trabalho em andamento, no momento apenas possuímos dados de 2024/2 e dos indicados para 2025/1.
-   - No futuro, essa página irá mostrar os dados de todo o período; os dados de cada semestre serão exibidos no menu lateral.
-   """)
+st.markdown(carregar_texto("principal_info_porjeto.md"))
 
 # Sidebar com itens customizados
 with st.sidebar:
@@ -114,6 +117,7 @@ else:
         # Removida a visualização completa dos dados de 2024
 
         st.subheader("Comparação de Inscritos por UF e por Ano")
+        st.markdown(carregar_texto("principal_comparação_de_inscritos.md"))
         if not df_2025.empty and "SIGLA UF" in df_2024.columns:
             df_comp = pd.concat([
                 df_2024[["SIGLA UF", "Ano"]],

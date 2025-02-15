@@ -1,0 +1,1 @@
+Esta página apresenta mapas coropléticos que indicam o percentual de escolas atendidas pelo PRODITEC. A intensidade da coloração reflete a proporção de cobertura do programa, permitindo identificar regiões com maior e menor participação, além de avaliar a distribuição equitativa das oportunidades educacionais.

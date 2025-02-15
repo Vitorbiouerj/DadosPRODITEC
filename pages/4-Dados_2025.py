@@ -1,23 +1,24 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
-import plotly.graph_objects as go
-from plotly.subplots import make_subplots
 import os
+import sys
 
-# Configuração da página (este será o script principal)
-st.set_page_config(page_title="Dados 2025", layout="wide")
-st.title("Dados 2025 - Análise Detalhada (Principal)")
+# Obtém o caminho absoluto do diretório raiz do projeto
+dir_raiz = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 
-# Sidebar com itens customizados
-with st.sidebar:
-    st.title("Menu")
-    st.sidebar.markdown("""
-    - Use os itens da barra lateral para navegar entre dados de 2024/2 e 2025/1
-    - Use as abas para navegar nos diferentes tipos de visualizações
-    - Caso queria usar um tema claro, clique no 3 pontos, vá em settings, e mude o "Choose app theme, colors and fonts" para Light
-    - **Caso esteja visualizando no celular, clique no 3 pontos, vá em settings e desmarque o "Wide Mode"**
-    """)
+# Adiciona o diretório raiz ao sys.path para que possamos importar config_pagina.py
+if dir_raiz not in sys.path:
+    sys.path.append(dir_raiz)
+
+# Agora importa corretamente a função configurar_pagina
+from config_pagina import configurar_pagina
+
+# Obtém o nome do arquivo atual dinamicamente
+nome_arquivo = os.path.basename(__file__)
+
+# Configura a página automaticamente
+configurar_pagina(nome_arquivo)
 
 
 # Função para carregar os dados a partir de um arquivo CSV local
