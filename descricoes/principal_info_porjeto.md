@@ -13,7 +13,7 @@ Para melhor experiência na navegação e visualização dos dados, recomenda-se
 
 - **Alternar entre modo padrão e modo expandido (Wide Mode):**  
   No canto superior direito da tela, clique nos três pontos (⋮), selecione "Settings" e marque ou desmarque a opção "Wide Mode".  
-  - O **modo padrão** mantém uma largura fixa para o conteúdo.  
+  - O **modo padrão** mantém uma largura no ***modo expandido*** para o conteúdo, mas se estiver visualizando pelo celular ou tablet, pode ser melhor desabilitar ele.  
   - O **modo expandido** permite que os gráficos e tabelas ocupem toda a largura da tela, facilitando a análise de dados em telas maiores.
 
 - **Escolher entre tema claro e escuro:**  
@@ -35,11 +35,12 @@ O dashboard permite diferentes formas de interação para facilitar a exploraç�
 
 - **Visualização detalhada:**  
   - Passe o mouse sobre os gráficos e mapas para visualizar informações complementares.
+  - Na maioria dos gráficos, pode-se dar zoom em trechos específicos selecionando a área desejada.
   - Os itens podem ser ocultos ou exibidos dos gráficos clicando na legenda correspondente.
 - **Filtragem de dados em tempo real:**  
-  Utilize os menus suspensos (dropdowns) para selecionar estados, regiões ou outros critérios de interesse.
+  Utilize os menus suspensos (dropdowns) ou abas para selecionar estados, regiões ou outros critérios de interesse.
 - **Exportação de dados:**  
-  Algumas tabelas incluem a opção de exportação para planilhas, possibilitando análises externas.
+  Algumas tabelas e gráficos incluem a opção de exportação para planilhas e imagens, possibilitando análises externas.
 
 ---
 
