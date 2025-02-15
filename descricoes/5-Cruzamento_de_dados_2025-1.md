@@ -1,1 +1,0 @@
-Esta página realiza a comparação entre os inscritos do PRODITEC no primeiro semestre de 2025 e os dados do Censo Escolar de 2023. Os gráficos analisam a distribuição dos cursistas por **UF**, **região** e **município**, permitindo avaliar a abrangência do programa e identificar diferenças em relação ao período anterior.
