@@ -22,8 +22,10 @@ if git stash list | grep -q "Backup antes do pull"; then
     git stash pop
 fi
 
-echo "Digite a mensagem do commit:"
-read commit_message
+# Gera a mensagem do commit no formato ANO-MÊS-DIA HORA:MINUTO
+commit_message="atualização automática número $(date '+%Y-%m-%d %H:%M')"
+
+echo "Criando commit com a mensagem: '$commit_message'"
 git add .
 git commit -m "$commit_message"
 
