@@ -59,7 +59,7 @@ Isso iniciará um servidor local, e você poderá visualizar a aplicação no se
 
 ## ℹ️ Observações
 
-- Certifique-se de que os arquivos de dados (`dados_2024.csv` e `dados_2025.csv`) estejam presentes no diretório `data/` antes de executar a aplicação.
+- Certifique-se de que os arquivos de dados (`dados_2024.csv` e `dados_2025.csv`) estejam presentes no diretório raiz antes de executar a aplicação.
 - Para testar partes do código, você pode utilizar o Jupyter Notebook antes de integrá-las ao projeto principal no PyCharm.
 
 ---
