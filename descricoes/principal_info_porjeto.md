@@ -1,4 +1,4 @@
-## **Guia de Navegação e Informações sobre o Projeto**
+### **Guia de Navegação e Informações sobre o Projeto**
 
 Este dashboard foi desenvolvido para facilitar a análise dos dados do PRODITEC, permitindo a visualização interativa de informações essenciais sobre a execução do programa. Atualmente, a plataforma exibe os dados referentes ao segundo semestre de 2024, uma vez que o curso será concluído apenas em março de 2025, além das informações preliminares dos participantes indicados para o primeiro semestre de 2025.
 
@@ -8,7 +8,7 @@ No futuro, esta página consolidará os dados de todo o período de execução d
 
 ---
 
-## **1. Configuração Inicial**
+### **1. Configuração Inicial**
 Para melhor experiência na navegação e visualização dos dados, recomenda-se ajustar as seguintes configurações no Streamlit:
 
 - **Alternar entre modo padrão e modo expandido (Wide Mode):**  
@@ -23,26 +23,13 @@ Para melhor experiência na navegação e visualização dos dados, recomenda-se
 
 ---
 
-## **2. Estrutura do Dashboard**
+### **2. Estrutura do Dashboard**
 
 O dashboard do PRODITEC é organizado em seções, acessíveis pelo menu lateral, que permitem a análise detalhada dos dados.
 
-- **Dados IBGE 2023**: Estatísticas do Censo Escolar de 2023, incluindo distribuição de matrículas por estado e município.  
-- **Dados 2024** e **Dados 2025**: Informações sobre os participantes do PRODITEC nos respectivos períodos.  
-- **Cruzamento de dados 2024-2** e **Cruzamento de dados 2025-1**: Comparação entre os inscritos e os dados do Censo Escolar, analisando padrões de distribuição.  
-- **Número de escolas**: Quantidade total de escolas por município, estado e região.  
-- **Mapa Distribuição das Escolas**: Visualização espacial das instituições participantes do PRODITEC.  
-- **Taxa de evasão por tamanho da rede**: Análise da relação entre o número de escolas por município e a taxa de evasão.  
-- **Mapas Distribuição PRODITEC**: Representação geográfica dos cursistas, segmentada por período.  
-- **Mapas de Coberturas**: Percentual de escolas atendidas pelo PRODITEC, indicando a abrangência do programa.  
-- **Heatmap 2024** e **Heatmap 2025**: Mapas de calor que destacam as regiões com maior concentração de participantes.  
-
-As explicações detalhadas de cada seção estão disponíveis na barra lateral do dashboard ou embaixo dos títulos das seções.
-
-
 ---
 
-## **3. Interação com os Dados**
+### **3. Interação com os Dados**
 O dashboard permite diferentes formas de interação para facilitar a exploração das informações:
 
 
