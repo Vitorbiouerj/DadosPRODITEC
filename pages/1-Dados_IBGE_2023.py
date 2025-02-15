@@ -15,7 +15,6 @@ configurar_pagina(nome_arquivo)
 def load_data():
     return pd.read_csv("consolidado_matriculas.csv")
 
-
 df = load_data()
 
 # Excluir colunas indesejadas
@@ -26,12 +25,7 @@ colunas_excluir = [
 ]
 df.drop(columns=colunas_excluir, inplace=True, errors='ignore')
 
-# Agrupar os dados por UF e calcular estatísticas
-dados_uf = df.groupby('UF').agg({'QTDE MATRÍCULAS': ['sum', 'mean', 'median', 'std', 'min', 'max',
-                                                     lambda x: x.quantile(0.25), lambda x: x.quantile(0.75)]})
-dados_uf.columns = ['TOTAL', 'MEDIA', 'MEDIANA', 'STD', 'MIN', 'MAX', 'Q25', 'Q75']
-dados_uf.reset_index(inplace=True)
-
+# Ordenar os dados para evitar problemas de visualização
 df.sort_values(by=['UF', 'NOME MUNICÍPIO'], inplace=True)
 
 # Criar abas
@@ -40,61 +34,75 @@ aba_graficos, aba_tabelas = st.tabs(["Gráficos", "Tabelas"])
 with aba_graficos:
     st.title("Análise de distribuição de Matrículas pelas Unidades Escolares agregadas por UF")
 
-    # Gráfico boxplot interativo por UF com nome do município no popup
+    # Gráfico boxplot por UF
     fig = px.box(df, x='UF', y='QTDE MATRÍCULAS', title="Distribuição de Matrículas por UF",
                  hover_data=['NOME MUNICÍPIO'], category_orders={'UF': sorted(df['UF'].unique())})
-    st.plotly_chart(fig)
+    st.plotly_chart(fig, use_container_width=True, key="boxplot_uf")
 
-    # Removendo outliers utilizando os quartis
-    df_filtrado = df[(df['QTDE MATRÍCULAS'] >= df['QTDE MATRÍCULAS'].quantile(0.25)) & (
-                df['QTDE MATRÍCULAS'] <= df['QTDE MATRÍCULAS'].quantile(0.75))]
+    # Removendo outliers corretamente por UF
+    def remover_outliers_por_uf(grupo):
+        q1 = grupo['QTDE MATRÍCULAS'].quantile(0.25)
+        q3 = grupo['QTDE MATRÍCULAS'].quantile(0.75)
+        iqr = q3 - q1
+        limite_inferior = q1 - 1.5 * iqr
+        limite_superior = q3 + 1.5 * iqr
+        return grupo[(grupo['QTDE MATRÍCULAS'] >= limite_inferior) & (grupo['QTDE MATRÍCULAS'] <= limite_superior)]
+
+    df_filtrado = df.groupby("UF", group_keys=False).apply(remover_outliers_por_uf)
+
     fig_filtrado = px.box(df_filtrado, x='UF', y='QTDE MATRÍCULAS',
-                          title="Distribuição de Matrículas por UF (Sem Outliers)", hover_data=['NOME MUNICÍPIO'],
-                          category_orders={'UF': sorted(df['UF'].unique())})
-    st.plotly_chart(fig_filtrado)
+                          title="Distribuição de Matrículas por UF (Sem Outliers)",
+                          hover_data=['NOME MUNICÍPIO'],
+                          category_orders={'UF': sorted(df['UF'].unique())},
+                          points=False)  # Remove a exibição de outliers
+    st.plotly_chart(fig_filtrado, use_container_width=True, key="boxplot_uf_sem_outliers")
 
     # Selecionar UF para detalhamento
-    uf_selecionada = st.selectbox("Selecione uma UF para ver os dados por município:", sorted(dados_uf['UF'].unique()))
+    uf_selecionada = st.selectbox("Selecione uma UF para ver os dados por município:", sorted(df['UF'].unique()))
 
-    # Gráfico boxplot interativo por município
-    fig = px.box(df[df['UF'] == uf_selecionada], x='NOME MUNICÍPIO', y='QTDE MATRÍCULAS',
-                 title=f"Distribuição de Matrículas nos Municípios de {uf_selecionada}", hover_data=['NOME MUNICÍPIO'],
-                 category_orders={'NOME MUNICÍPIO': sorted(df[df['UF'] == uf_selecionada]['NOME MUNICÍPIO'].unique())})
-    st.plotly_chart(fig)
+    # Filtrar apenas os dados da UF selecionada
+    df_municipios = df[df['UF'] == uf_selecionada].copy()
 
-    # Removendo outliers do gráfico por município
-    df_municipios_filtrado = df[
-        (df['UF'] == uf_selecionada) & (df['QTDE MATRÍCULAS'] >= df['QTDE MATRÍCULAS'].quantile(0.25)) & (
-                    df['QTDE MATRÍCULAS'] <= df['QTDE MATRÍCULAS'].quantile(0.75))]
-    fig_municipios_filtrado = px.box(df_municipios_filtrado, x='NOME MUNICÍPIO', y='QTDE MATRÍCULAS',
-                                     title=f"Distribuição de Matrículas nos Municípios de {uf_selecionada} (Sem Outliers)",
-                                     hover_data=['NOME MUNICÍPIO'], category_orders={
-            'NOME MUNICÍPIO': sorted(df_municipios_filtrado['NOME MUNICÍPIO'].unique())})
-    st.plotly_chart(fig_municipios_filtrado)
+    # Criar boxplot com todos os dados para a UF selecionada
+    fig = px.box(df_municipios, x='NOME MUNICÍPIO', y='QTDE MATRÍCULAS',
+                 title=f"Distribuição de Matrículas nos Municípios de {uf_selecionada}",
+                 hover_data=['NOME MUNICÍPIO'],
+                 category_orders={'NOME MUNICÍPIO': sorted(df_municipios['NOME MUNICÍPIO'].unique())})
+    st.plotly_chart(fig, use_container_width=True, key=f"boxplot_municipios_{uf_selecionada}")
+
+    # Garantir que os quartis sejam calculados apenas com os dados da UF selecionada
+    df_municipios = df[df['UF'] == uf_selecionada].copy()
+
+    # Calcular Q1, Q3 e IQR apenas para a UF selecionada
+    q1 = df_municipios['QTDE MATRÍCULAS'].quantile(0.25)
+    q3 = df_municipios['QTDE MATRÍCULAS'].quantile(0.75)
+    iqr = q3 - q1
+
+    # Definir os limites das cercas para remoção de outliers
+    limite_inferior = q1 - 1.5 * iqr
+    limite_superior = q3 + 1.5 * iqr
+
+    # Aplicar a filtragem ANTES de passar para o gráfico
+    df_municipios_filtrado = df_municipios[
+        (df_municipios['QTDE MATRÍCULAS'] >= limite_inferior) &
+        (df_municipios['QTDE MATRÍCULAS'] <= limite_superior)
+        ].copy()  # Criar cópia para evitar problemas de referência
+
+    # Criar o gráfico SEM outliers
+    fig_municipios_filtrado = px.box(
+        df_municipios_filtrado,
+        x='NOME MUNICÍPIO',
+        y='QTDE MATRÍCULAS',
+        title=f"Distribuição de Matrículas nos Municípios de {uf_selecionada} (Sem Outliers)",
+        hover_data=['NOME MUNICÍPIO'],
+        category_orders={'NOME MUNICÍPIO': sorted(df_municipios_filtrado['NOME MUNICÍPIO'].unique())},
+        points=False  # REMOVE explicitamente a exibição de outliers
+    )
+
+    # Exibir o gráfico sem outliers
+    st.plotly_chart(fig_municipios_filtrado, use_container_width=True,
+                    key=f"boxplot_municipios_sem_outliers_{uf_selecionada}")
 
 with aba_tabelas:
     st.title("Tabelas de Dados")
     st.subheader("Dados por UF")
-    st.dataframe(dados_uf)
-
-    st.subheader("Dados por Município")
-    uf_tabela_selecionada = st.selectbox("Selecione uma UF para ver os dados da tabela por município:",
-                                         sorted(dados_uf['UF'].unique()), key="uf_tabelas")
-
-    # Filtrar dados por município dentro da UF selecionada
-    dados_municipios = df[df['UF'] == uf_tabela_selecionada].groupby('NOME MUNICÍPIO').agg({'QTDE MATRÍCULAS': ['sum',
-                                                                                                                'mean',
-                                                                                                                'median',
-                                                                                                                'std',
-                                                                                                                'min',
-                                                                                                                'max',
-                                                                                                                lambda
-                                                                                                                    x: x.quantile(
-                                                                                                                    0.25),
-                                                                                                                lambda
-                                                                                                                    x: x.quantile(
-                                                                                                                    0.75)]})
-    dados_municipios.columns = ['TOTAL', 'MEDIA', 'MEDIANA', 'STD', 'MIN', 'MAX', 'Q25', 'Q75']
-    dados_municipios.reset_index(inplace=True)
-    dados_municipios.sort_values(by='NOME MUNICÍPIO', inplace=True)
-    st.dataframe(dados_municipios)
