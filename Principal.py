@@ -14,7 +14,7 @@ from carregador_texto import carregar_texto
 # Configuração da página (este será o script principal)
 st.set_page_config(page_title="Dados Gerais do Curso - UFF", layout="wide")
 st.title("Dados Gerais do Curso PRODITEC, UFF, em parceria com o MEC e UFSCar - Análise Detalhada (Principal)")
-st.markdown(carregar_texto("principal_info_porjeto.md"))
+st.markdown(carregar_texto("descricoes/principal_info_porjeto.md"))
 
 # Sidebar com itens customizados
 with st.sidebar:
