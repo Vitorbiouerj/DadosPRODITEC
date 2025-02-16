@@ -42,8 +42,8 @@ def load_data(file_path):
 # Carregar os dados de 2024 e 2025
 data_2024_path = "dados_2024.csv"
 data_2025_path = "dados_2025.csv"
-df_2024 = load_data(data_2024_path)
-df_2025 = load_data(data_2025_path)
+df_2024 = data_2024_path
+df_2025 = data_2025_path
 
 if df_2024.empty:
     st.error("Dados de 2024 não disponíveis.")
